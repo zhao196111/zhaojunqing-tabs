@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="赵俊清">
+  <meta name="description" content="新闻选项卡 Demo：国内新闻 / 省内新闻 / 国际新闻 / 最新新闻，原生 JS 实现，组件可复用。">
+  <title>今日要闻 · 新闻选项卡</title>
+  <!-- 外部样式：css/zjq__style.css -->
+  <link rel="stylesheet" href="./css/zjq__style.css">
+</head>
+<body class="zjq__page">
+
+  <!-- ===== 顶部站点导航 ===== -->
+  <header class="zjq__header">
+    <div class="zjq__wrap zjq__header-inner">
+      <a class="zjq__logo" href="./index.html">
+        <span class="zjq__logo-mark">讯</span>
+        <span class="zjq__logo-text">今日要闻</span>
+      </a>
+      <nav class="zjq__nav" aria-label="站点导航">
+        <a class="zjq__nav-link zjq__nav-link--active" href="#">首页</a>
+        <a class="zjq__nav-link" href="#zjq__news-card">新闻</a>
+        <a class="zjq__nav-link" href="#zjq__demo-card">组件</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="zjq__wrap zjq__main">
+
+    <!-- 页面标题 -->
+    <section class="zjq__intro">
+      <h1 class="zjq__title">今日要闻</h1>
+      <p class="zjq__subtitle">按分类浏览：国内 · 省内 · 国际 · 最新</p>
+    </section>
+
+    <!-- ===== 选项卡组件（可复用，第一个实例） ===== -->
+    <!-- data-zjq__tabs 标记这是一个选项卡根容器；data-zjq__default 指定默认选中的序号（从 0 开始，0 = 国内新闻） -->
+    <section class="zjq__card" id="zjq__news-card" data-zjq__tabs data-zjq__default="0">
+
+      <!-- 选项卡头部：role="tablist" 表明这是一组选项卡 -->
+      <div class="zjq__tab-nav" role="tablist" aria-label="新闻分类">
+        <button class="zjq__tab zjq__tab--active" type="button" role="tab"
+                id="zjq__tab-domestic" aria-controls="zjq__panel-domestic" aria-selected="true" tabindex="0">
+          国内新闻
+        </button>
+        <button class="zjq__tab" type="button" role="tab"
+                id="zjq__tab-province" aria-controls="zjq__panel-province" aria-selected="false" tabindex="-1">
+          省内新闻
+        </button>
+        <button class="zjq__tab" type="button" role="tab"
+                id="zjq__tab-world" aria-controls="zjq__panel-world" aria-selected="false" tabindex="-1">
+          国际新闻
+        </button>
+        <button class="zjq__tab" type="button" role="tab"
+                id="zjq__tab-latest" aria-controls="zjq__panel-latest" aria-selected="false" tabindex="-1">
+          最新新闻
+        </button>
+      </div>
+
+      <!-- 选项卡内容区 -->
+      <div class="zjq__panel-group">
+
+        <!-- 面板 1：国内新闻（默认显示） -->
+        <div class="zjq__panel zjq__panel--active" id="zjq__panel-domestic" role="tabpanel" aria-labelledby="zjq__tab-domestic" tabindex="0">
+          <ul class="zjq__news-list">
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">1</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">全国多地推进城市更新，老旧小区改造进入加速期</a>
+                <p class="zjq__news-meta">人民日报 <span class="zjq__news-dot"></span> 08:30</p>
+              </div>
+              <span class="zjq__news-hot">187706</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">2</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">国产大模型集体升级，多模态能力成为竞争焦点</a>
+                <p class="zjq__news-meta">新华社 <span class="zjq__news-dot"></span> 09:12</p>
+              </div>
+              <span class="zjq__news-hot">171180</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">3</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">新能源汽车下乡活动启动，覆盖二十余个省份</a>
+                <p class="zjq__news-meta">经济日报 <span class="zjq__news-dot"></span> 10:05</p>
+              </div>
+              <span class="zjq__news-hot">127631</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">4</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">全国铁路今日起实行新的列车运行图，多条线路压缩运行时间</a>
+                <p class="zjq__news-meta">央视新闻 <span class="zjq__news-dot"></span> 07:40</p>
+              </div>
+              <span class="zjq__news-hot">113865</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">5</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">三部门联合发文规范直播带货，进一步明确平台责任</a>
+                <p class="zjq__news-meta">中国新闻网 <span class="zjq__news-dot"></span> 11:20</p>
+              </div>
+              <span class="zjq__news-hot">72770</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">6</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">秋粮收购全面展开，主产区收购进度已过半</a>
+                <p class="zjq__news-meta">农民日报 <span class="zjq__news-dot"></span> 09:58</p>
+              </div>
+              <span class="zjq__news-hot">62971</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">7</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">全国首批智慧高速试点路段完成数字化改造</a>
+                <p class="zjq__news-meta">科技日报 <span class="zjq__news-dot"></span> 12:15</p>
+              </div>
+              <span class="zjq__news-hot">27456</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">8</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">高校开设人工智能通识课，覆盖全部本科新生</a>
+                <p class="zjq__news-meta">中国教育报 <span class="zjq__news-dot"></span> 13:02</p>
+              </div>
+              <span class="zjq__news-hot">25322</span>
+            </li>
+          </ul>
+          <a class="zjq__news-more" href="#">查看更多国内新闻 <span class="zjq__news-arrow">→</span></a>
+        </div>
+
+        <!-- 面板 2：省内新闻 -->
+        <div class="zjq__panel" id="zjq__panel-province" role="tabpanel" aria-labelledby="zjq__tab-province" tabindex="0" hidden>
+          <ul class="zjq__news-list">
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">1</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">辽宁沿海经济带一批重点项目集中开工，总投资超八百亿元</a>
+                <p class="zjq__news-meta">辽宁日报 <span class="zjq__news-dot"></span> 08:45</p>
+              </div>
+              <span class="zjq__news-hot">86210</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">2</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">大连港集装箱吞吐量同比增长，航线网络持续扩容</a>
+                <p class="zjq__news-meta">大连日报 <span class="zjq__news-dot"></span> 09:30</p>
+              </div>
+              <span class="zjq__news-hot">71345</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">3</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">沈阳现代化都市圈城际公交再添三条线路</a>
+                <p class="zjq__news-meta">辽沈晚报 <span class="zjq__news-dot"></span> 10:12</p>
+              </div>
+              <span class="zjq__news-hot">54820</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">4</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">全省中小学课后服务实现城乡全覆盖</a>
+                <p class="zjq__news-meta">辽宁教育 <span class="zjq__news-dot"></span> 11:05</p>
+              </div>
+              <span class="zjq__news-hot">43906</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">5</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">辽宁秋季文旅消费季启动，多项惠民措施同步上线</a>
+                <p class="zjq__news-meta">东北新闻网 <span class="zjq__news-dot"></span> 12:20</p>
+              </div>
+              <span class="zjq__news-hot">33178</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">6</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">大连东软信息学院举办数字技术人才专场双选会</a>
+                <p class="zjq__news-meta">校园新闻网 <span class="zjq__news-dot"></span> 13:10</p>
+              </div>
+              <span class="zjq__news-hot">26840</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">7</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">省级科技企业孵化器新增十二家，聚焦软件与智能制造</a>
+                <p class="zjq__news-meta">大连晚报 <span class="zjq__news-dot"></span> 14:00</p>
+              </div>
+              <span class="zjq__news-hot">18762</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">8</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">辽宁农产品区域公用品牌集中亮相全国农交会</a>
+                <p class="zjq__news-meta">辽宁日报 <span class="zjq__news-dot"></span> 15:30</p>
+              </div>
+              <span class="zjq__news-hot">12905</span>
+            </li>
+          </ul>
+          <a class="zjq__news-more" href="#">查看更多省内新闻 <span class="zjq__news-arrow">→</span></a>
+        </div>
+
+        <!-- 面板 3：国际新闻 -->
+        <div class="zjq__panel" id="zjq__panel-world" role="tabpanel" aria-labelledby="zjq__tab-world" tabindex="0" hidden>
+          <ul class="zjq__news-list">
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">1</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">全球主要央行维持利率不变，市场关注后续通胀数据</a>
+                <p class="zjq__news-meta">新华社 <span class="zjq__news-dot"></span> 07:55</p>
+              </div>
+              <span class="zjq__news-hot">96410</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">2</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">联合国气候大会聚焦绿色能源融资与低碳技术转移</a>
+                <p class="zjq__news-meta">央视新闻 <span class="zjq__news-dot"></span> 08:20</p>
+              </div>
+              <span class="zjq__news-hot">82147</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">3</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">国际油价震荡收跌，布伦特原油跌破关键关口</a>
+                <p class="zjq__news-meta">路透社 <span class="zjq__news-dot"></span> 09:05</p>
+              </div>
+              <span class="zjq__news-hot">65223</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">4</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">欧洲多国加快推进电网升级，储能装机量创历史新高</a>
+                <p class="zjq__news-meta">科技日报 <span class="zjq__news-dot"></span> 10:40</p>
+              </div>
+              <span class="zjq__news-hot">51108</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">5</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">全球半导体设备出货量回暖，先进制程投资持续加大</a>
+                <p class="zjq__news-meta">界面新闻 <span class="zjq__news-dot"></span> 11:30</p>
+              </div>
+              <span class="zjq__news-hot">40517</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">6</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">多国科研机构联合开展海洋生态综合科学考察</a>
+                <p class="zjq__news-meta">中国新闻网 <span class="zjq__news-dot"></span> 12:45</p>
+              </div>
+              <span class="zjq__news-hot">31244</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">7</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">国际航运运价指数连续三周回落，集运市场趋于平稳</a>
+                <p class="zjq__news-meta">航运界 <span class="zjq__news-dot"></span> 13:35</p>
+              </div>
+              <span class="zjq__news-hot">21876</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">8</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">跨境支付新规在多个经济体落地，结算效率明显提升</a>
+                <p class="zjq__news-meta">金融时报 <span class="zjq__news-dot"></span> 14:18</p>
+              </div>
+              <span class="zjq__news-hot">15093</span>
+            </li>
+          </ul>
+          <a class="zjq__news-more" href="#">查看更多国际新闻 <span class="zjq__news-arrow">→</span></a>
+        </div>
+
+        <!-- 面板 4：最新新闻 -->
+        <div class="zjq__panel" id="zjq__panel-latest" role="tabpanel" aria-labelledby="zjq__tab-latest" tabindex="0" hidden>
+          <ul class="zjq__news-list">
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">1</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">快讯：今日 15 时起部分高速路段因施工临时管制</a>
+                <p class="zjq__news-meta">交通广播 <span class="zjq__news-dot"></span> 15:02</p>
+              </div>
+              <span class="zjq__news-hot">4321</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">2</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">多地发布大雾黄色预警，早高峰出行请注意安全</a>
+                <p class="zjq__news-meta">气象台 <span class="zjq__news-dot"></span> 14:50</p>
+              </div>
+              <span class="zjq__news-hot">3865</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">3</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">新款折叠屏手机正式发布，主打轻薄机身与影像升级</a>
+                <p class="zjq__news-meta">数码前线 <span class="zjq__news-dot"></span> 14:36</p>
+              </div>
+              <span class="zjq__news-hot">3204</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">4</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">第 30 届城市马拉松报名通道开启，名额两小时内约满</a>
+                <p class="zjq__news-meta">体育周刊 <span class="zjq__news-dot"></span> 14:20</p>
+              </div>
+              <span class="zjq__news-hot">2871</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">5</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">餐饮消费券本周五起发放，覆盖全市三千余家门店</a>
+                <p class="zjq__news-meta">本地生活 <span class="zjq__news-dot"></span> 14:05</p>
+              </div>
+              <span class="zjq__news-hot">2402</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">6</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">高校图书馆延长开放时间，24 小时自习区正式投用</a>
+                <p class="zjq__news-meta">校园新闻网 <span class="zjq__news-dot"></span> 13:48</p>
+              </div>
+              <span class="zjq__news-hot">1966</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">7</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">新版电子证照上线，八类证件可在线申领</a>
+                <p class="zjq__news-meta">政务服务 <span class="zjq__news-dot"></span> 13:30</p>
+              </div>
+              <span class="zjq__news-hot">1580</span>
+            </li>
+            <li class="zjq__news-item">
+              <span class="zjq__news-rank">8</span>
+              <div class="zjq__news-body">
+                <a class="zjq__news-title" href="#">冷空气今夜抵达，明日气温下降 6~8℃</a>
+                <p class="zjq__news-meta">气象台 <span class="zjq__news-dot"></span> 13:12</p>
+              </div>
+              <span class="zjq__news-hot">1204</span>
+            </li>
+          </ul>
+          <a class="zjq__news-more" href="#">查看更多最新新闻 <span class="zjq__news-arrow">→</span></a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== 复用演示：同一份 JS 初始化第二个选项卡实例 ===== -->
+    <section class="zjq__card zjq__card--compact" id="zjq__demo-card" data-zjq__tabs data-zjq__default="0">
+      <div class="zjq__demo-head">
+        <h2 class="zjq__demo-title">组件复用演示</h2>
+        <p class="zjq__demo-desc">下面这一组选项卡由同一份 <code class="zjq__code">js/zjq__tab.js</code> 初始化，无需重复写逻辑。</p>
+      </div>
+      <div class="zjq__tab-nav zjq__tab-nav--sm" role="tablist" aria-label="技术栈分类">
+        <button class="zjq__tab zjq__tab--active" type="button" role="tab"
+                id="zjq__tab-fe" aria-controls="zjq__panel-fe" aria-selected="true" tabindex="0">前端</button>
+        <button class="zjq__tab" type="button" role="tab"
+                id="zjq__tab-be" aria-controls="zjq__panel-be" aria-selected="false" tabindex="-1">后端</button>
+        <button class="zjq__tab" type="button" role="tab"
+                id="zjq__tab-db" aria-controls="zjq__panel-db" aria-selected="false" tabindex="-1">数据库</button>
+      </div>
+      <div class="zjq__panel-group zjq__panel-group--sm">
+        <div class="zjq__panel zjq__panel--active" id="zjq__panel-fe" role="tabpanel" aria-labelledby="zjq__tab-fe" tabindex="0">
+          <p class="zjq__demo-text">HTML 负责结构，CSS 负责表现，JavaScript 负责行为。三者分离，页面才便于维护与复用。</p>
+        </div>
+        <div class="zjq__panel" id="zjq__panel-be" role="tabpanel" aria-labelledby="zjq__tab-be" tabindex="0" hidden>
+          <p class="zjq__demo-text">后端接收请求、处理业务逻辑、返回数据，常见技术栈有 Node.js、Java、Python、Go 等。</p>
+        </div>
+        <div class="zjq__panel" id="zjq__panel-db" role="tabpanel" aria-labelledby="zjq__tab-db" tabindex="0" hidden>
+          <p class="zjq__demo-text">数据库负责持久化存储，关系型如 MySQL、PostgreSQL，非关系型如 Redis、MongoDB。</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="zjq__footer">
+    <div class="zjq__wrap">
+      <p class="zjq__footer-text">© 2026 今日要闻 · 课堂实践作业 · 赵俊清</p>
+    </div>
+  </footer>
+
+  <!-- 外部脚本：js/zjq__tab.js（必须放在 DOM 之后，脚本内部监听 DOMContentLoaded） -->
+  <script src="./js/zjq__tab.js"></script>
+</body>
+</html>

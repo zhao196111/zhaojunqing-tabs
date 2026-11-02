@@ -1,0 +1,472 @@
+/* =========================================================
+   新闻选项卡 Demo 样式表
+   作者：赵俊清
+   命名规范：所有 CSS 类名、ID、自定义属性均以 zjq__ 开头
+   ========================================================= */
+
+/* ---------- 1. 设计变量 ---------- */
+:root {
+  --zjq__blue: #1a6fc4;
+  --zjq__blue-dark: #14589e;
+  --zjq__blue-soft: #eaf3fc;
+  --zjq__blue-line: #dbe8f6;
+  --zjq__text: #1f2d3d;
+  --zjq__text-weak: #6b7f93;
+  --zjq__text-mute: #9aaabb;
+  --zjq__red: #d9363e;
+  --zjq__bg: #f2f5f9;
+  --zjq__white: #ffffff;
+  --zjq__line: #eef2f7;
+  --zjq__radius: 14px;
+  --zjq__shadow: 0 10px 30px rgba(26, 63, 110, 0.08);
+  --zjq__shadow-soft: 0 2px 8px rgba(26, 63, 110, 0.06);
+  --zjq__font: "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Source Han Sans SC", system-ui, -apple-system, Arial, sans-serif;
+}
+
+/* ---------- 2. 基础重置 ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body.zjq__page {
+  min-height: 100vh;
+  background: var(--zjq__bg);
+  background-image: linear-gradient(180deg, #e9f1fa 0%, #f2f5f9 320px);
+  color: var(--zjq__text);
+  font-family: var(--zjq__font);
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+/* ---------- 3. 布局容器 ---------- */
+.zjq__wrap {
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ---------- 4. 顶部导航 ---------- */
+.zjq__header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--zjq__blue-line);
+}
+
+.zjq__header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 62px;
+}
+
+.zjq__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.zjq__logo-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #2a86e0, #1257a3);
+  color: #fff;
+  font-size: 16px;
+  line-height: 1;
+  box-shadow: 0 4px 10px rgba(26, 111, 196, 0.35);
+}
+
+.zjq__nav {
+  display: flex;
+  gap: 6px;
+}
+
+.zjq__nav-link {
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  color: var(--zjq__text-weak);
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.zjq__nav-link:hover {
+  background: var(--zjq__blue-soft);
+  color: var(--zjq__blue);
+}
+
+.zjq__nav-link--active {
+  color: var(--zjq__blue);
+  font-weight: 600;
+  background: var(--zjq__blue-soft);
+}
+
+/* ---------- 5. 页面标题区 ---------- */
+.zjq__main {
+  padding-bottom: 56px;
+}
+
+.zjq__intro {
+  padding: 34px 4px 22px;
+}
+
+.zjq__title {
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.zjq__subtitle {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--zjq__text-weak);
+}
+
+/* ---------- 6. 卡片 ---------- */
+.zjq__card {
+  background: var(--zjq__white);
+  border: 1px solid rgba(219, 232, 246, 0.9);
+  border-radius: var(--zjq__radius);
+  box-shadow: var(--zjq__shadow);
+  overflow: hidden;
+}
+
+.zjq__card--compact {
+  margin-top: 26px;
+}
+
+/* ---------- 7. 选项卡头部 ---------- */
+.zjq__tab-nav {
+  display: flex;
+  align-items: stretch;
+  gap: 2px;
+  padding: 0 12px;
+  background: linear-gradient(180deg, #f7fbff 0%, #eff6fd 100%);
+  border-bottom: 1px solid var(--zjq__blue-line);
+}
+
+.zjq__tab {
+  position: relative;
+  padding: 15px 26px 14px;
+  border: 0;
+  border-radius: 10px 10px 0 0;
+  background: transparent;
+  color: var(--zjq__text-weak);
+  font-size: 15.5px;
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.zjq__tab:hover {
+  color: var(--zjq__blue);
+  background: rgba(255, 255, 255, 0.65);
+}
+
+/* 选中状态：白色底 + 蓝色上边框 + 蓝色文字（清除逻辑在 JS 中完成） */
+.zjq__tab--active {
+  background: var(--zjq__white);
+  color: var(--zjq__blue);
+  font-weight: 700;
+  box-shadow: inset 0 3px 0 0 var(--zjq__blue), 0 -2px 10px rgba(26, 111, 196, 0.06);
+  margin-bottom: -1px;
+  padding-bottom: 15px;
+}
+
+.zjq__tab:focus-visible {
+  outline: 2px solid var(--zjq__blue);
+  outline-offset: -3px;
+}
+
+/* ---------- 8. 选项卡面板 ---------- */
+.zjq__panel-group {
+  padding: 4px 26px 8px;
+}
+
+.zjq__panel {
+  display: none;
+  animation: zjq__fade-in 0.28s ease both;
+}
+
+.zjq__panel--active {
+  display: block;
+}
+
+@keyframes zjq__fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- 9. 新闻列表 ---------- */
+.zjq__news-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 0;
+  border-bottom: 1px dashed var(--zjq__line);
+}
+
+.zjq__news-item:last-child {
+  border-bottom: 0;
+}
+
+.zjq__news-rank {
+  flex: 0 0 24px;
+  margin-top: 2px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--zjq__text-mute);
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.zjq__news-item:nth-child(1) .zjq__news-rank,
+.zjq__news-item:nth-child(2) .zjq__news-rank,
+.zjq__news-item:nth-child(3) .zjq__news-rank {
+  color: #f0793a;
+}
+
+.zjq__news-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.zjq__news-title {
+  display: inline-block;
+  font-size: 16px;
+  color: var(--zjq__text);
+  line-height: 1.55;
+  transition: color 0.2s ease;
+}
+
+.zjq__news-title:hover {
+  color: var(--zjq__blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.zjq__news-meta {
+  margin-top: 3px;
+  font-size: 12.5px;
+  color: var(--zjq__text-mute);
+}
+
+.zjq__news-dot {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  margin: 0 6px 3px;
+  border-radius: 50%;
+  background: #c8d5e2;
+}
+
+.zjq__news-hot {
+  flex: 0 0 auto;
+  margin-top: 3px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--zjq__red);
+  font-variant-numeric: tabular-nums;
+}
+
+.zjq__news-more {
+  display: inline-block;
+  margin: 14px 0 16px;
+  font-size: 13.5px;
+  color: var(--zjq__blue);
+}
+
+.zjq__news-more:hover {
+  color: var(--zjq__blue-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.zjq__news-arrow {
+  transition: transform 0.2s ease;
+  display: inline-block;
+}
+
+.zjq__news-more:hover .zjq__news-arrow {
+  transform: translateX(4px);
+}
+
+/* ---------- 10. 复用演示卡片 ---------- */
+.zjq__demo-head {
+  padding: 20px 26px 14px;
+}
+
+.zjq__demo-title {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.zjq__demo-desc {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--zjq__text-weak);
+}
+
+.zjq__code {
+  padding: 1px 6px;
+  border-radius: 5px;
+  background: var(--zjq__blue-soft);
+  color: var(--zjq__blue-dark);
+  font-family: Consolas, Monaco, "Courier New", monospace;
+  font-size: 12.5px;
+}
+
+.zjq__tab-nav--sm {
+  background: #fafcfe;
+  padding: 0 16px;
+}
+
+.zjq__tab-nav--sm .zjq__tab {
+  padding: 11px 18px 10px;
+  font-size: 14px;
+}
+
+.zjq__tab-nav--sm .zjq__tab--active {
+  padding-bottom: 11px;
+}
+
+.zjq__panel-group--sm {
+  padding: 16px 26px 22px;
+}
+
+.zjq__demo-text {
+  font-size: 14px;
+  color: var(--zjq__text-weak);
+  line-height: 1.8;
+}
+
+/* ---------- 11. 页脚 ---------- */
+.zjq__footer {
+  border-top: 1px solid var(--zjq__blue-line);
+  padding: 18px 0 26px;
+}
+
+.zjq__footer-text {
+  font-size: 12.5px;
+  color: var(--zjq__text-mute);
+  text-align: center;
+}
+
+/* ---------- 12. 响应式 ---------- */
+@media (max-width: 640px) {
+  .zjq__wrap {
+    padding: 0 14px;
+  }
+
+  .zjq__title {
+    font-size: 22px;
+  }
+
+  .zjq__tab-nav {
+    padding: 0 4px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .zjq__tab-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .zjq__tab {
+    flex: 1 0 auto;
+    padding: 13px 14px 12px;
+    font-size: 14.5px;
+    white-space: nowrap;
+  }
+
+  .zjq__tab--active {
+    padding-bottom: 13px;
+  }
+
+  .zjq__panel-group {
+    padding: 2px 16px 6px;
+  }
+
+  .zjq__news-title {
+    font-size: 15px;
+  }
+
+  .zjq__news-hot {
+    font-size: 13px;
+  }
+
+  .zjq__demo-head,
+  .zjq__panel-group--sm {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zjq__panel {
+    animation: none;
+  }
+}
+
+/* 超窄屏（≤380px）：压缩选项卡内边距，保证四个选项卡同屏可见 */
+@media (max-width: 380px) {
+  .zjq__tab {
+    padding: 12px 6px 11px;
+    font-size: 13px;
+    letter-spacing: 0;
+  }
+
+  .zjq__tab--active {
+    padding-bottom: 12px;
+  }
+
+  .zjq__panel-group {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .zjq__news-item {
+    gap: 8px;
+  }
+
+  .zjq__news-rank {
+    flex: 0 0 18px;
+  }
+}

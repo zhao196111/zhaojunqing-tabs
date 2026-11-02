@@ -1,6 +1,9 @@
 # 今日要闻 · 新闻选项卡（Tabs）实践作业
 
 > 作者：赵俊清　　命名前缀：`zjq__`　　仓库名：`zhaojunqing-tabs`（包含姓名全拼）
+>
+> - 仓库地址：https://github.com/zhao196111/zhaojunqing-tabs
+> - 在线预览：https://zhao196111.github.io/zhaojunqing-tabs/
 
 ## 一、作业要求对照
 
@@ -80,5 +83,7 @@ zhaojunqing-tabs/
 - [x] `index.html`（4 个选项卡，国内新闻默认选中）
 - [x] `css/zjq__style.css`（外部样式，类名 `zjq__` 前缀）
 - [x] `js/zjq__tab.js`（外部脚本，变量 `zjq__` 前缀，可复用、含事件监听与「先清除后设置」逻辑）
-- [ ] 推送到 `zhaojunqing-tabs` 仓库并开启 GitHub Pages
-- [ ] 提交仓库链接 + Pages 在线链接
+- [x] 推送到 `zhaojunqing-tabs` 仓库并开启 GitHub Pages
+- [x] 提交仓库链接 + Pages 在线链接
+  - 仓库：https://github.com/zhao196111/zhaojunqing-tabs
+  - 在线：https://zhao196111.github.io/zhaojunqing-tabs/
